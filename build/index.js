@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import http from 'node:http';
+import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 // Canonical naming derived from mcp_name "gemini-2.5 flash mcp"
 const CANONICAL_ID = 'gemini-2-5-flash-mcp';
@@ -182,8 +185,56 @@ mcp.tool('style_transfer', 'Transfer style from a style image to a base image, g
     };
 });
 async function main() {
-    console.error(`[${CANONICAL_DISPLAY}] Starting '${MCP_NAME}' over stdio`);
-    await mcp.connect(new StdioServerTransport());
+    const transportMode = (process.env.MCP_TRANSPORT ?? 'stdio').toLowerCase();
+    if (transportMode === 'http') {
+        const port = Number(process.env.MCP_HTTP_PORT ?? 7801);
+        const path = process.env.MCP_HTTP_PATH ?? '/mcp';
+        const enableJson = (process.env.MCP_HTTP_ENABLE_JSON ?? 'false').toLowerCase() === 'true';
+        const transport = new StreamableHTTPServerTransport({
+            sessionIdGenerator: () => randomUUID(),
+            enableJsonResponse: enableJson,
+        });
+        await mcp.connect(transport);
+        const server = http.createServer(async (req, res) => {
+            try {
+                if (!req.url?.startsWith(path)) {
+                    res.statusCode = 404;
+                    res.end('Not Found');
+                    return;
+                }
+                let parsedBody = undefined;
+                if (req.method === 'POST') {
+                    const chunks = [];
+                    for await (const chunk of req)
+                        chunks.push(chunk);
+                    const raw = Buffer.concat(chunks).toString('utf8');
+                    try {
+                        parsedBody = raw ? JSON.parse(raw) : undefined;
+                    }
+                    catch {
+                        res.statusCode = 400;
+                        res.end('Invalid JSON');
+                        return;
+                    }
+                }
+                await transport.handleRequest(req, res, parsedBody);
+            }
+            catch (err) {
+                console.error(`[${CANONICAL_DISPLAY}] HTTP error:`, err);
+                if (!res.headersSent) {
+                    res.statusCode = 500;
+                    res.end('Internal Server Error');
+                }
+            }
+        });
+        server.listen(port, () => {
+            console.error(`[${CANONICAL_DISPLAY}] HTTP transport listening on http://localhost:${port}${path}`);
+        });
+    }
+    else {
+        console.error(`[${CANONICAL_DISPLAY}] Starting '${MCP_NAME}' over stdio`);
+        await mcp.connect(new StdioServerTransport());
+    }
 }
 main().catch((err) => {
     console.error(`[${CANONICAL_DISPLAY}] Fatal error:`, err);
