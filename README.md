@@ -1,4 +1,4 @@
-# Gemini 2.5 Flash MCP
+# Gemini 2.5 Flash Image MCP
 
 A Model Context Protocol (MCP) server for conversational image generation and editing with Google's Gemini 2.5 Flash Image Preview. Designed to be easy to install and use from Claude Code and other MCP clients.
 
