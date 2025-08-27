@@ -48,15 +48,21 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 # setx GEMINI_API_KEY "YOUR_API_KEY"
 # その後、新しいターミナルを開いて反映してください
 
-# npx（非対話フラグ付き） + APIキー同時指定（macOS/Linux）
-claude mcp add gemini-2-5-flash-mcp -s user -- env GEMINI_API_KEY=YOUR_API_KEY npx -y gemini-2-5-flash-mcp@latest
+# npx（非対話フラグ付き） + APIキー同時指定（Claudeの -e 指定）
+claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- npx -y gemini-2-5-flash-mcp@latest
 
-# グローバルインストール + APIキー同時指定（macOS/Linux）
+# グローバルインストール + APIキー同時指定（Claudeの -e 指定）
 npm i -g gemini-2-5-flash-mcp \
-  && claude mcp add gemini-2-5-flash-mcp -s user -- env GEMINI_API_KEY=YOUR_API_KEY gemini-2-5-flash-mcp
+  && claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- gemini-2-5-flash-mcp
 
-# Windows (PowerShell) の例
-claude mcp add gemini-2-5-flash-mcp -s user -- powershell -Command "$env:GEMINI_API_KEY='YOUR_API_KEY'; npx -y gemini-2-5-flash-mcp@latest"
+# HTTP モードで登録（SSE既定）例（対応クライアントのみ）
+# ※ HTTP モードはこのプロセス自体がHTTPサーバとして常駐します
+claude mcp add gemini-2-5-flash-mcp -s user \
+  -e GEMINI_API_KEY="YOUR_API_KEY" \
+  -e MCP_TRANSPORT="http" \
+  -e MCP_HTTP_PORT="7801" \
+  -e MCP_HTTP_PATH="/mcp" \
+  -- npx -y gemini-2-5-flash-mcp@latest
 ```
 
 ### Streamable HTTP mode（実験的）
