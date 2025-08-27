@@ -20,6 +20,24 @@ A Model Context Protocol (MCP) server for conversational image generation and ed
 - An MCP client (Claude Code, Cursor, VS Code, Windsurf, etc.)
 - Google Gemini API Key: set `GEMINI_API_KEY`
 
+### Get a Gemini API key
+
+Follow these steps to obtain an API key from Google AI Studio:
+
+1) Open Google AI Studio and sign in: https://aistudio.google.com/apikey
+2) Click “Create API key” (or “Manage keys” if you already have one)
+3) Copy the generated key
+4) Set it as an environment variable on your machine when running this server
+
+Examples:
+```bash
+# macOS / Linux (bash/zsh)
+export GEMINI_API_KEY="YOUR_API_KEY"
+
+# Windows PowerShell
+$env:GEMINI_API_KEY="YOUR_API_KEY"
+```
+
 ## Getting Started
 
 First, install the MCP server with your client. The following examples center on Claude Code usage.
