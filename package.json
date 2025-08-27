@@ -1,5 +1,5 @@
 {
-  "name": "gemini-2-5-flash-mcp",
+  "name": "@taiyokimura/gemini-2-5-flash-mcp",
   "version": "0.1.0",
   "private": false,
   "description": "MCP server for Google Gemini 2.5 Flash Image preview (text-to-image, editing, composition)",

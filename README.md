@@ -31,7 +31,7 @@ First, install the MCP server with your client. The following examples center on
   "mcpServers": {
     "gemini-2-5-flash-mcp": {
       "command": "npx",
-      "args": ["gemini-2-5-flash-mcp@latest"]
+      "args": ["@taiyokimura/gemini-2-5-flash-mcp@latest"]
     }
   }
 }
@@ -49,10 +49,10 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 # その後、新しいターミナルを開いて反映してください
 
 # npx（非対話フラグ付き） + APIキー同時指定（Claudeの -e 指定）
-claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- npx -y gemini-2-5-flash-mcp@latest
+claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- npx -y @taiyokimura/gemini-2-5-flash-mcp@latest
 
 # グローバルインストール + APIキー同時指定（Claudeの -e 指定）
-npm i -g gemini-2-5-flash-mcp \
+npm i -g @taiyokimura/gemini-2-5-flash-mcp \
   && claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- gemini-2-5-flash-mcp
 
 # HTTP モードで登録（SSE既定）例（対応クライアントのみ）
@@ -62,7 +62,7 @@ claude mcp add gemini-2-5-flash-mcp -s user \
   -e MCP_TRANSPORT="http" \
   -e MCP_HTTP_PORT="7801" \
   -e MCP_HTTP_PATH="/mcp" \
-  -- npx -y gemini-2-5-flash-mcp@latest
+  -- npx -y @taiyokimura/gemini-2-5-flash-mcp@latest
 ```
 
 ### Streamable HTTP mode（実験的）
@@ -99,7 +99,7 @@ node ./build/index.js
 Use the Claude Code CLI to add the MCP server:
 
 ```bash
-claude mcp add gemini-2-5-flash-mcp -s user -- npx gemini-2-5-flash-mcp@latest
+claude mcp add gemini-2-5-flash-mcp -s user -- npx @taiyokimura/gemini-2-5-flash-mcp@latest
 ```
 
 Remove if needed:
@@ -125,7 +125,7 @@ Use the following:
 - Name: gemini-2-5-flash-mcp
 - Type: command
 - Command: npx
-- Args: gemini-2-5-flash-mcp@latest
+- Args: @taiyokimura/gemini-2-5-flash-mcp@latest
 - Auto start: on (optional)
 </details>
 
@@ -135,7 +135,7 @@ Use the following:
 Add via CLI:
 
 ```bash
-code --add-mcp '{"name":"gemini-2-5-flash-mcp","command":"npx","args":["gemini-2-5-flash-mcp@latest"]}'
+code --add-mcp '{"name":"gemini-2-5-flash-mcp","command":"npx","args":["@taiyokimura/gemini-2-5-flash-mcp@latest"]}'
 ```
 
 Or use the standard config in settings.
@@ -146,7 +146,7 @@ Or use the standard config in settings.
 
 Add MCP Server with:
 - Command: npx
-- Args: ["gemini-2-5-flash-mcp@latest"]
+- Args: ["@taiyokimura/gemini-2-5-flash-mcp@latest"]
 </details>
 
 <details>
@@ -155,7 +155,7 @@ Add MCP Server with:
 Advanced settings → Extensions → Add custom extension:
 - Type: STDIO
 - Command: npx
-- Args: gemini-2-5-flash-mcp@latest
+- Args: @taiyokimura/gemini-2-5-flash-mcp@latest
 - Enabled: true
 </details>
 
@@ -172,7 +172,7 @@ Example `~/.config/opencode/opencode.json`:
       "type": "local",
       "command": [
         "npx",
-        "gemini-2-5-flash-mcp@latest"
+        "@taiyokimura/gemini-2-5-flash-mcp@latest"
       ],
       "enabled": true
     }
