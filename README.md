@@ -1,7 +1,3 @@
-## このMCPについて
-
-このMCPサーバーは、Google Gemini 2.5 Flash Image Preview API を使って、テキストからの画像生成や、画像+テキストでの編集・合成・スタイル転写を提供します。
-
 # Gemini 2.5 Flash MCP
 
 A Model Context Protocol (MCP) server for conversational image generation and editing with Google's Gemini 2.5 Flash Image Preview. Designed to be easy to install and use from Claude Code and other MCP clients.
