@@ -55,17 +55,9 @@ First, install the MCP server with your client. The following examples center on
 }
 ```
 
-### Quick usage (Claude Code 推奨)
+### Quick usage (Claude Code)
 
 ```bash
-# まず API キーを設定してください
-# macOS / Linux (bash/zsh)
-export GEMINI_API_KEY="YOUR_API_KEY"
-
-# Windows PowerShell
-# setx GEMINI_API_KEY "YOUR_API_KEY"
-# その後、新しいターミナルを開いて反映してください
-
 # npx（非対話フラグ付き） + APIキー同時指定（Claudeの -e 指定）
 claude mcp add gemini-2-5-flash-mcp -s user -e GEMINI_API_KEY="YOUR_API_KEY" -- npx -y @taiyokimura/gemini-2-5-flash-mcp@latest
 
