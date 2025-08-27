@@ -1,0 +1,43 @@
+{
+  "name": "gemini-2-5-flash-mcp",
+  "version": "0.1.0",
+  "private": false,
+  "description": "MCP server for Google Gemini 2.5 Flash Image preview (text-to-image, editing, composition)",
+  "type": "module",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "bin": {
+    "gemini-2-5-flash-mcp": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf build",
+    "prepare": "echo skip build on install",
+    "start": "node ./build/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "gemini",
+    "google",
+    "image",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "dotenv": "^16.6.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.2"
+  }
+}
