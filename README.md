@@ -48,12 +48,15 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 # setx GEMINI_API_KEY "YOUR_API_KEY"
 # その後、新しいターミナルを開いて反映してください
 
-# npx（非対話フラグ付き）
-claude mcp add gemini-2-5-flash-mcp -s user -- npx -y gemini-2-5-flash-mcp@latest
+# npx（非対話フラグ付き） + APIキー同時指定（macOS/Linux）
+claude mcp add gemini-2-5-flash-mcp -s user -- env GEMINI_API_KEY=YOUR_API_KEY npx -y gemini-2-5-flash-mcp@latest
 
-# グローバルインストール
+# グローバルインストール + APIキー同時指定（macOS/Linux）
 npm i -g gemini-2-5-flash-mcp \
-  && claude mcp add gemini-2-5-flash-mcp -s user -- gemini-2-5-flash-mcp
+  && claude mcp add gemini-2-5-flash-mcp -s user -- env GEMINI_API_KEY=YOUR_API_KEY gemini-2-5-flash-mcp
+
+# Windows (PowerShell) の例
+claude mcp add gemini-2-5-flash-mcp -s user -- powershell -Command "$env:GEMINI_API_KEY='YOUR_API_KEY'; npx -y gemini-2-5-flash-mcp@latest"
 ```
 
 ### Streamable HTTP mode（実験的）
