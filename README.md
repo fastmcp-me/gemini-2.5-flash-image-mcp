@@ -48,6 +48,34 @@ npm i -g gemini-2-5-flash-mcp \
   && claude mcp add gemini-2-5-flash-mcp -s user -- gemini-2-5-flash-mcp
 ```
 
+### Streamable HTTP mode（実験的）
+
+STDIO の代わりに Streamable HTTP を使うこともできます。MCP クライアントが Streamable HTTP に対応している場合のみ利用してください。
+
+1) サーバーを HTTP モードで起動
+
+```bash
+export MCP_TRANSPORT=http
+export GEMINI_API_KEY=YOUR_API_KEY
+# 任意（既定: 7801, /mcp, SSE）
+export MCP_HTTP_PORT=7801
+export MCP_HTTP_PATH=/mcp
+export MCP_HTTP_ENABLE_JSON=false
+
+npm run build
+node ./build/index.js
+# => HTTP transport listening on http://localhost:7801/mcp
+```
+
+2) クライアント側設定（例: Streamable HTTP対応クライアント）
+
+- Type: HTTP (Streamable)
+- URL: `http://localhost:7801/mcp`
+
+注:
+- SSE ストリーミングが既定。JSONレスポンスで使いたい場合は `MCP_HTTP_ENABLE_JSON=true`。
+- セッションはサーバー側で生成（stateful）。完全 stateless にしたい場合はコード側で `sessionIdGenerator: undefined` に変更可能です。
+
 <details>
 <summary><b>Claude Code (Recommended)</b></summary>
 
