@@ -1,3 +1,10 @@
+[![Add to Cursor](https://fastmcp.me/badges/cursor_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+[![Add to VS Code](https://fastmcp.me/badges/vscode_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+[![Add to Claude](https://fastmcp.me/badges/claude_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+[![Add to ChatGPT](https://fastmcp.me/badges/chatgpt_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+[![Add to Codex](https://fastmcp.me/badges/codex_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+[![Add to Gemini](https://fastmcp.me/badges/gemini_dark.svg)](https://fastmcp.me/MCP/Details/1099/gemini-25-flash-image)
+
 # Gemini 2.5 Flash Image MCP
 
 A Model Context Protocol (MCP) server for conversational image generation and editing with Google's Gemini 2.5 Flash Image Preview. Designed to be easy to install and use from Claude Code and other MCP clients.
